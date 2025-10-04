@@ -5,23 +5,23 @@ sudo apt update
 sudo apt install -y wget unzip qemu-utils qemu-user-static
 
 # Download MikroTik CHR Image
-wget https://download.mikrotik.com/routeros/7.15.3/chr-7.15.3.img.zip
+wget https://download.mikrotik.com/routeros/7.20/chr-7.20.img.zip
 
 # Ekstrak Image
-unzip chr-7.15.3.img.zip
+unzip chr-7.20.img.zip
 
 # Konversi Image ke Format QCOW2
-qemu-img convert -f raw -O qcow2 chr-7.15.3.img chr-7.15.3.qcow2
+qemu-img convert -f raw -O qcow2 chr-7.20.img chr-7.20.qcow2
 
 # Buat Dockerfile
 cat <<EOF > Dockerfile
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 # Install QEMU user-static for emulation
 RUN apt-get update && apt-get install -y qemu-user-static qemu-system-x86
 
 # Copy the CHR image
-COPY chr-7.15.3.qcow2 /chr-7.15.3.qcow2
+COPY chr-7.20.qcow2 /chr-7.20.qcow2
 
 # Expose ports
 EXPOSE 8291 80 443 22 23 21 53/udp 53/tcp 123/udp 8728 8729 2210 179 8292 1194/udp 1194/tcp 1701/udp 1723 500/udp 4500/udp 50/tcp 51/tcp 1812/udp 1813/udp
@@ -59,6 +59,6 @@ sudo docker run --name mikrotik-chr-6 --restart unless-stopped \
     -p 7021:51/tcp \
     -p 7022:1812/udp \
     -p 7023:1813/udp \
-    mikrotik-chr-6
+    mikrotik-chr-7
 
-echo "MikroTik CHR telah berhasil diinstal dan dijalankan dalam Docker dengan nama mikrotik-chr-6."
+echo "MikroTik CHR telah berhasil diinstal dan dijalankan dalam Docker dengan nama mikrotik-chr-7."
