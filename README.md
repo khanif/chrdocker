@@ -10,7 +10,7 @@ bash <(wget -qO- https://raw.githubusercontent.com/safrinnetwork/Auto-Install-Mi
 
 ### RouterOS 7
 ```
-bash <(wget -qO- https://raw.githubusercontent.com/khanif/chrdocke/main/RoS7/v7.sh)
+bash <(wget -qO- https://raw.githubusercontent.com/khanif/chrdocker/main/RoS7/v7.sh)
 ```
 # Pull Langsung Dari Repository Docker Hub
 ### RouterOS 6
